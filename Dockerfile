@@ -32,3 +32,14 @@ RUN \
   $(mv /usr/local/sbt-launcher-packaging-$SBT_VERSION /usr/local/sbt || true) \
   ln -s /usr/local/sbt/bin/* /usr/local/bin/ && \
   sbt sbt-version || sbt sbtVersion || true
+
+RUN \
+  curl -fsL https://git.io/vgvpD -o /usr/local/bin/coursier && \
+  chmod +x /usr/local/bin/coursier && \
+  coursier --help
+
+RUN \
+  coursier bootstrap com.geirsson:scalafmt-cli_2.12:1.5.0 \
+    -r bintray:scalameta/maven \
+    -o /usr/local/bin/scalafmt --standalone --main org.scalafmt.cli.Cli && \
+  scalafmt --version
