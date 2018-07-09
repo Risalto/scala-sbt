@@ -21,6 +21,7 @@ RUN \
   apk add --no-cache curl && \
   apk add --no-cache git && \
   apk add --no-cache openssh && \
+  apk add --no-cache make && \
   curl -fsL http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /usr/local && \
   ln -s /usr/local/scala-$SCALA_VERSION/bin/* /usr/local/bin/ && \
   scala -version && \
